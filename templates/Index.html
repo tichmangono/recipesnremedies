@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %} 
+ 
+<div id="name"> 
+    <h2 style="font-style:normal;"> Kitchen Recipes </h2>
+    <h4> Recipes, relishes, remedies and more...</h4>
+</div>
+<div id="method">
+    <ol id ="results_lst">
+        <li> <strong>Using the Search Bar:</strong>
+            <ul style="font-style: italic;">
+                <li>
+                Recipe#: you can search by recipe number e.g. 5 or 12. Sometimes this may show a few unrelated results 
+                </li>
+                <li>
+                Keyword: You can search by keyword e.g. "breakfast", "meat" or "sandwich"
+                </li>
+                <li>
+                Hall-of-Fame: some recipes have been battle-tested under the toughest conditions: 
+                a picky pallet and an even more selective tummy. Type 3 asterisks "***" to see these culinary delights 
+                </li>
+            </ul>    
+        </li>
+        <li> <strong>Selecting A Dish:</strong>
+            <ul style="font-style: italic;">
+                <li>
+                Once your search results are display, scroll to your favorite dish and click to select 
+                </li>
+                <li>
+                This will display the full details for the dish, including the name and cooking method
+                </li>
+            </ul>
+        </li>
+        <li> <strong>Cooking & Eating:</strong>
+            <ul  style="font-style: italic;">
+                <li>
+                You can use your stove, fire or whatever.
+                </li>
+                <li>
+                Most ingredients are relatively acceessible. Yea, we don't eat frogs legs on the regular either :-)
+                </li>
+                <li>
+                Sources: compiled by <a href='#' style="color:blue; font-style:normal">Amy Zimmermmann</a> from expererience, 
+                various of sources, and occassional contribution from <a href='#' style="color:blue; font-style:normal">Tich Mangono</a>
+                </li>
+            </ul>
+        </li>
+    </ol>
+     
+ </div>
+ 
+{% endblock %}

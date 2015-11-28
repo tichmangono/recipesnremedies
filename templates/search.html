@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}  
+<div id="results_heading">
+    <h2 > Results for : {{request.form['search']}}</h2>
+</div>
+<div id="results_div"> 
+        <ul id="results_lst">    
+        {% for recipe in recipes%}
+            {% if (
+                recipe.dish_index|int == request.form['search']|int
+                or request.form['search'].lower()|string in recipe.dish_name.lower()|string    
+                or request.form['search'].lower()|string in recipe.dish_method.lower()|string
+                or request.form['search'].lower()|string in recipe.category.lower()|string
+                or request.form['search'].lower()|string == recipe.dish_name.lower()|string    
+                or request.form['search'].lower()|string == recipe.dish_method.lower()|string
+                or request.form['search'].lower()|string == recipe.category.lower()|string
+                ) and recipe.dish_name.lower()|string != recipe.category.lower()|string
+                                        : %}
+            <li>
+            <form action="/detail" method="POST">
+                <label name="results_lbl">
+                [{{recipe.dish_index}}]
+                </label>
+                <input type="hidden" name = "input" value="{{recipe.dish_index}}"></input>
+                <input id="link_button"type="submit" value="{{recipe.dish_name}}"></input>
+            </form>
+                <label>
+                {{recipe.dish_method}}.......
+                </label><br/><br/>
+            
+            {% else %}
+            
+            {% endif %}
+            </li>
+        {% endfor %}
+            <br/>
+        </ul>
+</div>
+            
+{% endblock %}

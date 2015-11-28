@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>RecipesNRemedies</title> 
+        <meta charset='utf-8'/>
+        <link href="../static/css/style.css" type="text/css" rel="stylesheet"/>
+        <script>
+        //    alert("Warning: Dangerous Deliciousnes ahead!")
+        //    function get_SearchInput() {
+        //        if (document.getElementById('search').value >1) {
+        //                document.getElementById('search').value = "you"
+        //        }//end of if statement
+        //    }// end function 
+            
+            function get_ThisDish() {
+                var x = document.getElementById('input').value
+                alert("func works!" + x)
+                document.getElementById('search').value = document.getElementById('input').value
+                form.submit()
+                } //end of function
+           
+        </script>
+    </head>
+    <body>
+        
+        <div id="header">
+            <h1>Recipes 'N Remedies </h1>
+        </div>
+        <div id="navbar">
+            <form action="/hsearch" method="POST">
+                    <p class="p">SEARCH REMEDIES</p>
+                    
+                    <input type="search" name="search" id = "search" 
+                    value='{{request.form.search}}' placeholder="Number or Keyword"
+                    onchange ="get_SearchInput()">
+                    
+                    <input align="center" type="submit" value="Search" id="search" 
+                    style="background-color: black; color:white; width:50%">
+            </form>
+            <ul id="navlist">
+                <li>
+                <a href='/'>KITCHEN</a><br/><br/>
+                </li>
+                <li>
+                <a href='/'>SUBMIT RECIPE</a><br/><br/>
+                </li>
+                <li>
+                <a href='/health'>HEALTH REMEDIES</a><br/><br/>
+                </li>
+                <li>
+                <a href='/health'>SUBMIT REMEDY</a><br/><br/>
+                </li>
+                <li>
+                <a href='/'>CONTACT</a><br/><br/>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="content"> 
+        
+        <!-- Child Template goes here... -->
+        {% block content %} {% endblock %}
+            
+        </div>
+        <div id="footer">
+        <a style="color:gray; background-color:white; font-decoration:normal;">© Copyright tichmangono</a>
+        </div>
+        
+    </body>
+</html>

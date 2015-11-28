@@ -1,0 +1,42 @@
+{% extends "hbase.html" %}
+{% block content %}  
+<div id="results_heading">
+    <h2 > Results for : {{request.form['search']}}</h2>
+</div>
+<div id="results_div"> 
+        <ul id="hresults_lst">    
+        {% for remedy in remedies%}
+            {% if (
+                remedy.index|int == request.form['search']|int
+                or request.form['search'].lower()|string in remedy.name.lower()|string    
+                or request.form['search'].lower()|string in remedy.method.lower()|string
+                or request.form['search'].lower()|string in remedy.category.lower()|string
+                or request.form['search'].lower()|string == remedy.name.lower()|string    
+                or request.form['search'].lower()|string == remedy.method.lower()|string
+                or request.form['search'].lower()|string == remedy.category.lower()|string
+                ) and remedy.name.lower()|string != remedy.category.lower()|string
+                and remedy.name.isdigit()== False
+                and remedy.method != ""
+                                        : %}
+            <li>
+            <form action="/hdetail" method="POST">
+                <label name="results_lbl">
+                [{{remedy.index}}]
+                </label>
+                <input type="hidden" name = "input" value="{{remedy.index}}"></input>
+                <input id="link_button"type="submit" value="{{remedy.name}}"></input>
+            </form>
+                <label>
+                {{remedy.method}}.......
+                </label><br/><br/>
+            
+            {% else %}
+            
+            {% endif %}
+            </li>
+        {% endfor %}
+            <br/>
+        </ul>
+</div>
+            
+{% endblock %}

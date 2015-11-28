@@ -1,0 +1,42 @@
+{% extends "hbase.html" %}
+{% block content %} 
+ 
+<div id="name"> 
+    {% for remedy in remedies %}
+    {% if remedy.index|int == request.form.input|int %}
+  
+    <h2> Remedy : {{remedy.name}}</h2>
+    
+    {% endif %}
+    {% endfor %} 
+    
+</div>
+<div id="method">
+    <!-- <h4> Info & Instructions: </h4> -->
+    {% for remedy in remedies %}
+    {% if remedy.index|int == request.form.input|int %}
+    {% for item in  remedy.method.split('*')%}
+        <ul id="hresults_lst" style="font-size:95%">
+        
+        {% if item != "" and item.split("—") != [] %}
+            {% for point in item.split("—") %}
+            <li>
+               {{point}}         
+            </li>
+            {% endfor %}
+        {% elif item != "" %}
+            <li>
+            {{item}}
+            </li>
+        {% else %}           
+        {% endif %}
+        
+        </ul>
+        
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+ 
+ </div>
+ 
+{% endblock %}

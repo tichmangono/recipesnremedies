@@ -1,0 +1,12 @@
+Flask==0.10.1
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+queuelib==1.4.2
+six==1.10.0
+Twisted==15.4.0
+urllib==0.1.12
+w3lib==1.13.0
+Werkzeug==0.11
+wheel==0.26.0
+zope.interface==4.1.3

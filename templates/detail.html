@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %} 
+ 
+<div id="name"> 
+    {% for recipe in recipes %}
+    {% if recipe.dish_index|int == request.form.input|int %}
+    
+    <h2> The Dish: {{recipe.dish_name}}</h2>
+    
+    {% endif %}
+    {% endfor %} 
+    
+</div>
+<div id="method">
+    <!-- <h4> Cooking Method: </h4> -->
+    {% for recipe in recipes %}
+    {% if recipe.dish_index|int == request.form.input|int %}
+    {% for item in recipe.dish_method.split('. ') %}
+        <ul id="results_lst">
+            {% if item.split('*') != "" %}
+            {% for point in item.split("*") %}
+            {% if point != ""%}
+            <li>
+               {{point}}         
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% elif item %}
+            <li>
+            {{item}}
+            </li>
+            {% else %}
+            {% endif %}
+        </ul>    
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+ 
+ </div>
+ 
+{% endblock %}
