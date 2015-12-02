@@ -214,15 +214,22 @@ relief =[]
 # Using os path to avoid hard-coding: remedy file and recipe file
 s = '\\'
 #dir = os.getcwd()
-#dir = 'recipesnremedies'
+dir = os.path.dirname(os.path.realpath(__file__))
 folder = 'datafiles'
 file1 = 'recipes.txt'
 file2 = 'remedies.txt'
-path1 = [folder, file1]
-path2 = [folder,file2]
+path1 = [dir, folder, file1]
+path2 = [dir, folder,file2]
 
 MY_RECIPES_FILE = s.join(path1)
 MY_REMEDIES_FILE = s.join(path2)
+
+#MY_RECIPES_FILE = os.path.join(BASE_DIR, file1)
+#MY_REMEDIES_FILE = os.path.join(BASE_DIR, file2)
+
+print(os.path.dirname(os.path.realpath(__file__)))
+print(MY_RECIPES_FILE)
+print(MY_REMEDIES_FILE)
 
 def insert_to_db(bon_apetit, relief):    
     """
