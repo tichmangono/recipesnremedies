@@ -221,11 +221,11 @@ file2 = 'remedies.txt'
 path1 = [dir, folder, file1]
 path2 = [dir, folder,file2]
 
-MY_RECIPES_FILE = s.join(path1)
-MY_REMEDIES_FILE = s.join(path2)
+#MY_RECIPES_FILE = s.join(path1)
+#MY_REMEDIES_FILE = s.join(path2)
 
-#MY_RECIPES_FILE = os.path.join(BASE_DIR, file1)
-#MY_REMEDIES_FILE = os.path.join(BASE_DIR, file2)
+MY_RECIPES_FILE = os.path.join(dir, folder, file1)
+MY_REMEDIES_FILE = os.path.join(dir, folder, file2)
 
 print(os.path.dirname(os.path.realpath(__file__)))
 print(MY_RECIPES_FILE)
