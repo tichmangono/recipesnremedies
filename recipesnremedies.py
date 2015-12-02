@@ -238,6 +238,7 @@ def insert_to_db(bon_apetit, relief):
     """
     # Create database if it does not exist
     with sqlite3.connect("cookbook.db") as connection:
+        connection.text_factory = str
         c= connection.cursor()
     #drop table just in case, we want to make a new one    
         print("\nDrop and create recipes table.....")
