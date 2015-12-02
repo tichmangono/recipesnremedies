@@ -21,15 +21,10 @@ application and small database. Enjoy!
 """
 
 # import the modules we need
-from flask import Flask, render_template, redirect, \
-    url_for, request, session, flash, g
-from functools import wraps
-import sqlite3
-import random
 import os
-import re
-from string import digits
+import sqlite3
 
+from flask import Flask, render_template, request, g
 
 # Create the application object
 app = Flask(__name__)
