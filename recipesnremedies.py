@@ -117,7 +117,8 @@ def detail():
         return render_template('detail.html', recipes=recipes, input=input)
         
     except Exception as e: 
-        return str(e)
+        p = "page not rendering"
+        return p #str(e)
 
 #use decorators to link the function to a url
 @recipesnremedies.route('/health', methods=['GET', 'POST'])
