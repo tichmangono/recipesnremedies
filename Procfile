@@ -1,1 +1,1 @@
-web: gunicorn recipesnremedies:recipesnremedies
+web: gunicorn recipesnremedies:app
