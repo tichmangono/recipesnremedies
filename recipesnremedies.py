@@ -1,5 +1,5 @@
 ###############################################################################
-                #--------MY RECIPES 'N REMEDIES APPLICATION-------------------#
+                #--------MY RECIPES 'N REMEDIES recipesnremediesLICATION-------------------#
 ###############################################################################
 
 """
@@ -12,7 +12,7 @@ just like in the manual save-as menu?
 
 This program should make it easier to retrieve out options of what we want 
 to have at any time on any day. I will also be easily connected to a web 
-application and small database. Enjoy!
+recipesnremedieslication and small database. Enjoy!
 
     author  :   Tich Mangono
     date    :   10/24/15
@@ -26,14 +26,14 @@ import sqlite3
 
 from flask import Flask, render_template, request, g
 
-# Create the application object
-app = Flask(__name__)
-#app.debug = True
+# Create the recipesnremedieslication object
+recipesnremedies = Flask(__name__)
+#recipesnremedies.debug = True
 # Add in a configuration variable for the database, assign
-app.database ="cookbook.db"
+recipesnremedies.database ="cookbook.db"
 
 #use decorators to link the function to a url
-@app.route('/', methods=['GET', 'POST'])
+@recipesnremedies.route('/', methods=['GET', 'POST'])
 def home():
     """ Function for flask interaction with the html webpage - homepage or index"""
 
@@ -63,7 +63,7 @@ def home():
         return str(e)
 
 #decorator and function to add the url for the search page
-@app.route('/search', methods=['GET', 'POST'])
+@recipesnremedies.route('/search', methods=['GET', 'POST'])
 def search():
     """ Function for search page of the recipes page"""
     try:  
@@ -92,7 +92,7 @@ def search():
 #return render_template('search.html') # render search page
 
 #decorator and function to add the url for the search page
-@app.route('/detail', methods=['GET', 'POST'])
+@recipesnremedies.route('/detail', methods=['GET', 'POST'])
 def detail():
     #return 'Hello'
     # search the database based on input from search box!
@@ -120,7 +120,7 @@ def detail():
         return str(e)
 
 #use decorators to link the function to a url
-@app.route('/health', methods=['GET', 'POST'])
+@recipesnremedies.route('/health', methods=['GET', 'POST'])
 def health():
     """ Function for flask interaction with the html webpage - homepage or index"""
     # g is a temp object specific to flask and it stores the database connection 
@@ -150,7 +150,7 @@ def health():
         return str(e)
 
 #decorator and function to add the url for the search page
-@app.route('/hsearch', methods=['GET', 'POST'])
+@recipesnremedies.route('/hsearch', methods=['GET', 'POST'])
 def hsearch():
     #return 'Hello'
     # search the database based on input from search box!
@@ -180,7 +180,7 @@ def hsearch():
 #return render_template('search.html') # render search page
 
 #decorator and function to add the url for the search page
-@app.route('/hdetail', methods=['GET', 'POST'])
+@recipesnremedies.route('/hdetail', methods=['GET', 'POST'])
 def hdetail():
     try: 
         g.db = connect_db()
@@ -226,7 +226,7 @@ MY_REMEDIES_FILE = s.join(path2)
 def insert_to_db(bon_apetit, relief):    
     """
     This is our database interaction function. It will take our final recipes data 
-    and insert it into a sqlite3 db to be accessed by the web app later
+    and insert it into a sqlite3 db to be accessed by the web recipesnremedies later
     """
     # Create database if it does not exist
     with sqlite3.connect("cookbook.db") as connection:
@@ -277,13 +277,13 @@ def connect_db():
     To test the db object is connectable to:
     go to cmd, and open python shell
     ----BEGIN-------
-    from app import *
+    from recipesnremedies import *
     c= connect_db()
     c
     c.close()
     ----END-------
     """ 
-    return sqlite3.connect(app.database)
+    return sqlite3.connect(recipesnremedies.database)
     
     
 def get_recipes(recipe_file):
@@ -306,7 +306,7 @@ def get_recipes(recipe_file):
     #split the string along the line breaks? #FIXME - may need another way
     recipe_list = text.strip().split('\n\n')
         
-    # Now organize the recipes into appropriate categories"""
+    # Now organize the recipes into recipesnremediesropriate categories"""
     cookbook ={}
     categories = [#'To Cook List',
                     'Breakfast',
@@ -352,18 +352,18 @@ def get_recipes(recipe_file):
     for i in dish_index:
         split = recipe_list[i].strip().split('\n',1)
         if len(split)<2:
-            dish_name.append(split[0])
-            dish_method.append("N/A")
+            dish_name.recipesnremediesend(split[0])
+            dish_method.recipesnremediesend("N/A")
         else:
-            dish_name.append(split[0])
-            dish_method.append(split[1])
+            dish_name.recipesnremediesend(split[0])
+            dish_method.recipesnremediesend(split[1])
             
     # Finally construct an all-encompasing dictionary, combining
     # dish names and the respective methods, and adding their category!
     print("\nAlmost there.......")
     bon_apetit = []
     for i in dish_index:
-        bon_apetit.append({
+        bon_apetit.recipesnremediesend({
                        "dish index": i,
                        "dish name": dish_name[i],
                        "dish method": dish_method[i],
@@ -403,7 +403,7 @@ def get_remedies(remedy_file):
     toc = []
     for item in c:
         if '\t' in item:
-            toc.append(item)
+            toc.recipesnremediesend(item)
         else:
             pass
 
@@ -427,13 +427,13 @@ def get_remedies(remedy_file):
     for key,value in enumerate(dots):
         x = dots[value][0]        
         y = dots[value][1].split('\t')[0]
-        dots_list.append([value, x, y])    
+        dots_list.recipesnremediesend([value, x, y])    
     
     tabs_list =[]
     for key,value in enumerate(tabs):
         x = tabs[value][0]
         y = tabs[value][1]
-        tabs_list.append([value, x, y])
+        tabs_list.recipesnremediesend([value, x, y])
     
     # COncatenate the full list from dots and tabs
     full_list = dots_list + tabs_list
@@ -449,18 +449,18 @@ def get_remedies(remedy_file):
     lst_of_lst =[]
     for item in raw_list:        
         if '\t' in item:
-            lst_of_lst.append(item.split('\t'))
+            lst_of_lst.recipesnremediesend(item.split('\t'))
     tbl_of_contents = []
     
     for item in full_list:    
-        tbl_of_contents.append(item[2])
+        tbl_of_contents.recipesnremediesend(item[2])
         
     # Now take out the table of content from original split list
     # first removing trailing text on table of contents cast to separate list
     x = lookup_list.split('Have in garden')
     threshold =len(x[0])    
 
-    # Now organize the recipes into appropriate categories
+    # Now organize the recipes into recipesnremediesropriate categories
     # insert recipes with their categories into a dictionary
     # run through the list of recipes
     
@@ -473,7 +473,7 @@ def get_remedies(remedy_file):
         item =tbl_of_contents[i]
         start = listZ.find(item.strip())
         end = start + len(item)
-        ref_list.append([int(start), int(end), item])
+        ref_list.recipesnremediesend([int(start), int(end), item])
     
     # sort list
     ref_list.sort(key = lambda x:x[0])        
@@ -493,7 +493,7 @@ def get_remedies(remedy_file):
             dict['name'] = ref_list[i-1][2]
             dict['method'] = listZ[x:y]
             dict['category'] = z
-            relief.append(dict)
+            relief.recipesnremediesend(dict)
         else:
             pass        
 
@@ -551,7 +551,7 @@ def main():
     get_recipes(MY_RECIPES_FILE)
     get_remedies(MY_REMEDIES_FILE)
     insert_to_db(bon_apetit, relief)
-    app.run()
+    recipesnremedies.run()
                 
 if __name__ == "__main__":
     main()
