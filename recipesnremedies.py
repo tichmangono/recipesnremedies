@@ -213,7 +213,8 @@ relief =[]
 # MY_FILE = 'C:\\Users\\Tichakunda Mangono\\My Projects\\recipe\\recipes.txt'
 # Using os path to avoid hard-coding: remedy file and recipe file
 s = '\\'
-dir = os.getcwd()
+#dir = os.getcwd()
+dir = 'recipesnremedies'
 folder = 'datafiles'
 file1 = 'recipes.txt'
 file2 = 'remedies.txt'
