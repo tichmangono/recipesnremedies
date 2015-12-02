@@ -214,12 +214,12 @@ relief =[]
 # Using os path to avoid hard-coding: remedy file and recipe file
 s = '\\'
 #dir = os.getcwd()
-dir = 'recipesnremedies'
+#dir = 'recipesnremedies'
 folder = 'datafiles'
 file1 = 'recipes.txt'
 file2 = 'remedies.txt'
-path1 = [dir, folder, file1]
-path2 = [dir, folder,file2]
+path1 = [folder, file1]
+path2 = [folder,file2]
 
 MY_RECIPES_FILE = s.join(path1)
 MY_REMEDIES_FILE = s.join(path2)
@@ -353,18 +353,18 @@ def get_recipes(recipe_file):
     for i in dish_index:
         split = recipe_list[i].strip().split('\n',1)
         if len(split)<2:
-            dish_name.recipesnremediesend(split[0])
-            dish_method.recipesnremediesend("N/A")
+            dish_name.append(split[0])
+            dish_method.append("N/A")
         else:
-            dish_name.recipesnremediesend(split[0])
-            dish_method.recipesnremediesend(split[1])
+            dish_name.append(split[0])
+            dish_method.append(split[1])
             
     # Finally construct an all-encompasing dictionary, combining
     # dish names and the respective methods, and adding their category!
     print("\nAlmost there.......")
     bon_apetit = []
     for i in dish_index:
-        bon_apetit.recipesnremediesend({
+        bon_apetit.append({
                        "dish index": i,
                        "dish name": dish_name[i],
                        "dish method": dish_method[i],
@@ -404,7 +404,7 @@ def get_remedies(remedy_file):
     toc = []
     for item in c:
         if '\t' in item:
-            toc.recipesnremediesend(item)
+            toc.append(item)
         else:
             pass
 
@@ -428,13 +428,13 @@ def get_remedies(remedy_file):
     for key,value in enumerate(dots):
         x = dots[value][0]        
         y = dots[value][1].split('\t')[0]
-        dots_list.recipesnremediesend([value, x, y])    
+        dots_list.append([value, x, y])    
     
     tabs_list =[]
     for key,value in enumerate(tabs):
         x = tabs[value][0]
         y = tabs[value][1]
-        tabs_list.recipesnremediesend([value, x, y])
+        tabs_list.append([value, x, y])
     
     # COncatenate the full list from dots and tabs
     full_list = dots_list + tabs_list
@@ -450,11 +450,11 @@ def get_remedies(remedy_file):
     lst_of_lst =[]
     for item in raw_list:        
         if '\t' in item:
-            lst_of_lst.recipesnremediesend(item.split('\t'))
+            lst_of_lst.append(item.split('\t'))
     tbl_of_contents = []
     
     for item in full_list:    
-        tbl_of_contents.recipesnremediesend(item[2])
+        tbl_of_contents.append(item[2])
         
     # Now take out the table of content from original split list
     # first removing trailing text on table of contents cast to separate list
@@ -474,7 +474,7 @@ def get_remedies(remedy_file):
         item =tbl_of_contents[i]
         start = listZ.find(item.strip())
         end = start + len(item)
-        ref_list.recipesnremediesend([int(start), int(end), item])
+        ref_list.append([int(start), int(end), item])
     
     # sort list
     ref_list.sort(key = lambda x:x[0])        
@@ -494,7 +494,7 @@ def get_remedies(remedy_file):
             dict['name'] = ref_list[i-1][2]
             dict['method'] = listZ[x:y]
             dict['category'] = z
-            relief.recipesnremediesend(dict)
+            relief.append(dict)
         else:
             pass        
 
