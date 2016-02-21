@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../scripts_15/mastering/datascience/.idea/datascience.iml" filepath="$PROJECT_DIR$/../scripts_15/mastering/datascience/.idea/datascience.iml" />
+      <module fileurl="file://$USER_HOME$/PycharmProjects/mysite/.idea/mysite.iml" filepath="$USER_HOME$/PycharmProjects/mysite/.idea/mysite.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/recipesnremedies.iml" filepath="$PROJECT_DIR$/.idea/recipesnremedies.iml" />
     </modules>
   </component>

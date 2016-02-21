@@ -1,6 +1,6 @@
-###############################################################################
-                #--------MY RECIPES 'N REMEDIES recipesnremediesLICATION-------------------#
-###############################################################################
+# ##############################################################################
+# --------MY RECIPES 'N REMEDIES recipesnremediesLICATION-------------------#
+# ##############################################################################
 
 """
 This should take our data from a plain text file, (in the future maybe from
@@ -12,7 +12,7 @@ just like in the manual save-as menu?
 
 This program should make it easier to retrieve out options of what we want 
 to have at any time on any day. I will also be easily connected to a web 
-recipesnremedieslication and small database. Enjoy!
+application and small database. Enjoy!
 
     author  :   Tich Mangono
     date    :   10/24/15
@@ -28,24 +28,24 @@ from flask import Flask, render_template, request, g
 
 # Create the recipesnremedieslication object
 recipesnremedies = Flask(__name__)
-#recipesnremedies.debug = True
+# recipesnremedies.debug = True
 # Add in a configuration variable for the database, assign
-recipesnremedies.database ="cookbook.db"
+recipesnremedies.database = "cookbook.db"
 
-#use decorators to link the function to a url
+# use decorators to link the function to a url
 @recipesnremedies.route('/', methods=['GET', 'POST'])
 def home():
     """ Function for flask interaction with the html webpage - homepage or index"""
 
     try:
         # g is a temp object specific to flask and it stores the database 
-        #connection in this case
+        # connection in this case
         # this value is reset after each request use it to connect and store
         # the db object
         g.db = connect_db()
         cur= g.db.execute('SELECT * FROM recipes')
         
-        # #cast the data to a dictionary
+        # cast the data to a dictionary
         recipes = [
                     dict
                         (
@@ -55,22 +55,24 @@ def home():
                         category= row[3]
                         ) for row in cur.fetchall()
                     ]
-        #close the database
+        # close the database
         g.db.close()
         return render_template('index.html', recipes=recipes) #render a template
 
     except Exception as e:
-        return str(e)
+        p = "page not rendering"
+        return p
+        # return str(e)
 
-#decorator and function to add the url for the search page
+# decorator and function to add the url for the search page
 @recipesnremedies.route('/search', methods=['GET', 'POST'])
 def search():
     """ Function for search page of the recipes page"""
     try:  
         g.db = connect_db()
-        #search_var = request.form['search']
+        # search_var = request.form['search']
         cur= g.db.execute('SELECT * FROM recipes')
-        # #cast the data to a dictionary
+        # cast the data to a dictionary
         recipes = [
                     dict
                         (
@@ -89,18 +91,18 @@ def search():
     except Exception as e: 
         return str(e)
     
-#return render_template('search.html') # render search page
+# return render_template('search.html') # render search page
 
-#decorator and function to add the url for the search page
+# decorator and function to add the url for the search page
 @recipesnremedies.route('/detail', methods=['GET', 'POST'])
 def detail():
-    #return 'Hello'
+    # return 'Hello'
     # search the database based on input from search box!
     try: 
         g.db = connect_db()
-        #search_var = request.form['search']
+        # search_var = request.form['search']
         cur= g.db.execute('SELECT * FROM recipes')
-        # #cast the data to a dictionary
+        # cast the data to a dictionary
         recipes = [
                     dict
                         (
@@ -117,10 +119,9 @@ def detail():
         return render_template('detail.html', recipes=recipes, input=input)
         
     except Exception as e: 
-        p = "page not rendering"
-        return p #str(e)
+        return str(e)
 
-#use decorators to link the function to a url
+# use decorators to link the function to a url
 @recipesnremedies.route('/health', methods=['GET', 'POST'])
 def health():
     """ Function for flask interaction with the html webpage - homepage or index"""
@@ -132,7 +133,7 @@ def health():
         g.db = connect_db()
         cur= g.db.execute('SELECT * FROM remedies')
         
-        # #cast the data to a dictionary
+        # cast the data to a dictionary
         remedies = [
                     dict
                         (
@@ -142,24 +143,24 @@ def health():
                         category= row[3]
                         ) for row in cur.fetchall()
                     ]
-        #close the database
+        # close the database
         g.db.close()
 
         return render_template('health.html', remedies=remedies) #render template
-        #return 'Hello World'
+        # return 'Hello World'
     except Exception as e:
         return str(e)
 
-#decorator and function to add the url for the search page
+# decorator and function to add the url for the search page
 @recipesnremedies.route('/hsearch', methods=['GET', 'POST'])
 def hsearch():
-    #return 'Hello'
+    # return 'Hello'
     # search the database based on input from search box!
     try: 
         g.db = connect_db()
-        #search_var = request.form['search']
+        # search_var = request.form['search']
         cur= g.db.execute('SELECT * FROM remedies')
-        # #cast the data to a dictionary
+        # cast the data to a dictionary
         remedies = [
                     dict
                         (
@@ -178,16 +179,16 @@ def hsearch():
     except Exception as e: 
         return str(e)
     
-#return render_template('search.html') # render search page
+# return render_template('search.html') # render search page
 
-#decorator and function to add the url for the search page
+# decorator and function to add the url for the search page
 @recipesnremedies.route('/hdetail', methods=['GET', 'POST'])
 def hdetail():
     try: 
         g.db = connect_db()
-        #search_var = request.form['search']
+        # search_var = request.form['search']
         cur= g.db.execute('SELECT * FROM remedies')
-        # #cast the data to a dictionary
+        # cast the data to a dictionary
         remedies = [
                     dict
                         (
@@ -206,7 +207,7 @@ def hdetail():
     except Exception as e: 
         return str(e)
         
-#initiatilizing global variables
+# initiatilizing global variables
 bon_apetit=[]
 relief =[]
 
@@ -214,7 +215,7 @@ relief =[]
 # MY_FILE = 'C:\\Users\\Tichakunda Mangono\\My Projects\\recipe\\recipes.txt'
 # Using os path to avoid hard-coding: remedy file and recipe file
 s = '\\'
-#dir = os.getcwd()
+# dir = os.getcwd()
 dir = os.path.dirname(os.path.realpath(__file__))
 folder = 'datafiles'
 file1 = 'recipes.txt'
@@ -222,8 +223,8 @@ file2 = 'remedies.txt'
 path1 = [dir, folder, file1]
 path2 = [dir, folder,file2]
 
-#MY_RECIPES_FILE = s.join(path1)
-#MY_REMEDIES_FILE = s.join(path2)
+# MY_RECIPES_FILE = s.join(path1)
+# MY_REMEDIES_FILE = s.join(path2)
 
 MY_RECIPES_FILE = os.path.join(dir, folder, file1)
 MY_REMEDIES_FILE = os.path.join(dir, folder, file2)
@@ -231,6 +232,7 @@ MY_REMEDIES_FILE = os.path.join(dir, folder, file2)
 print(os.path.dirname(os.path.realpath(__file__)))
 print(MY_RECIPES_FILE)
 print(MY_REMEDIES_FILE)
+
 
 def insert_to_db(bon_apetit, relief):    
     """
@@ -241,10 +243,10 @@ def insert_to_db(bon_apetit, relief):
     with sqlite3.connect("cookbook.db") as connection:
         connection.text_factory = str
         c= connection.cursor()
-    #drop table just in case, we want to make a new one    
+    # drop table just in case, we want to make a new one
         print("\nDrop and create recipes table.....")
         c.execute("""DROP TABLE if exists recipes""")
-    #create table to insert our recipes
+    # create table to insert our recipes
         c.execute('''CREATE TABLE recipes(dish_index INTEGER, 
                                         dish_name TEXT, 
                                         dish_method TEXT, 
@@ -255,10 +257,10 @@ def insert_to_db(bon_apetit, relief):
                                         name TEXT, 
                                         method TEXT, 
                                         category TEXT)''')
-        #insert the extract recipe dictionary into our new database, 
-        #using for loop
+        # insert the extract recipe dictionary into our new database,
+        # using for loop
         print("\nInserting values into remedies table.....\n")
-        #ran = random.randrange(4,73)
+        # ran = random.randrange(4,73)
         ran = range(0,74)
         for item in ran:            
             c.execute('''INSERT INTO recipes VALUES (?,?,?,?)''', 
@@ -270,7 +272,7 @@ def insert_to_db(bon_apetit, relief):
                         ]
                         )
         print("\nInserting values into remedies table.....\n")
-        #ran = random.randrange(4,73)
+        # ran = random.randrange(4,73)
         ran = range(0,321)
         for item in ran:            
             c.execute('''INSERT INTO remedies VALUES (?,?,?,?)''', 
@@ -281,7 +283,8 @@ def insert_to_db(bon_apetit, relief):
                         relief[item]['category']
                         ]
                         )
-                                                 
+
+
 def connect_db():
     """ Function to add an object (database) that we can connect to
     To test the db object is connectable to:
@@ -301,7 +304,7 @@ def get_recipes(recipe_file):
     This will locate the file and load the content and change items
     to python format
     """
-    #declare our output,  alist of dictionaries as global 
+    # declare our output,  alist of dictionaries as global
     # to enable the insert into db function to access it later
     global bon_apetit
     
@@ -313,7 +316,7 @@ def get_recipes(recipe_file):
     print("\nReading file.......")
     text = f.read()
     f.close()    
-    #split the string along the line breaks? #FIXME - may need another way
+    # split the string along the line breaks? #FIXME - may need another way
     recipe_list = text.strip().split('\n\n')
         
     # Now organize the recipes into recipesnremediesropriate categories"""
@@ -331,9 +334,9 @@ def get_recipes(recipe_file):
     
     # insert recipes with their categories into a dictionary
     # run through the list of recipes
-    #Now assign categories
-    #FIXME PLEASE!! There has to be a better way that this
-    #this is brute force!!! A more pythonic way
+    # Now assign categories
+    # FIXME PLEASE!! There has to be a better way than this
+    # this is brute force!!! A more pythonic way
     print("\nCategorizing recipes.......")
     for item in recipe_list:
         if recipe_list.index(item) in cat_pos:
@@ -348,11 +351,11 @@ def get_recipes(recipe_file):
             cookbook[recipe_list.index(item)] = cat_pos[3]      
         if recipe_list.index(item)> cat_pos[4]: #and recipe_list.index(item)< cat_pos[5]:
             cookbook[recipe_list.index(item)] = cat_pos[4]      
-        #if recipe_list.index(item)> cat_pos[5]:
-            #cookbook[recipe_list.index(item)] = cat_pos[5]
+        # if recipe_list.index(item)> cat_pos[5]:
+            # cookbook[recipe_list.index(item)] = cat_pos[5]
     
-    #separate out the two components of the cookbook, to keep indices in order
-    #and split the menu entries further to get the name of the dish
+    # separate out the two components of the cookbook, to keep indices in order
+    # and split the menu entries further to get the name of the dish
     dish_index =[i for i,x in cookbook.items()]
     cat_index =[x for i,x in cookbook.items()]
 
@@ -381,6 +384,7 @@ def get_recipes(recipe_file):
                             })
     return bon_apetit
 
+
 def get_remedies(remedy_file):
     """ 
     This will locate the file and load the content and change items
@@ -388,7 +392,7 @@ def get_remedies(remedy_file):
     used for both recipes and remedies to minimize the code
     
     """
-    #declare our output,  alist of dictionaries as global 
+    # declare our output,  alist of dictionaries as global
     # to enable the insert into db function to access it later
     global relief
     
@@ -405,7 +409,7 @@ def get_remedies(remedy_file):
     # this will help us to separate and locate the titles in the
     # document's table of content to use as a reference later
     # if we can find the positions of these titles and the are numbered
-    # corrrectly in a consecutive manner, then the text between these 
+    # correctly in a consecutive manner, then the text between these
     # titles will belong to the previous title. Voila! We have a way to
     # demarcate, locate, label and extract specific related pieces of
     # text. This is a master parsing function!
@@ -445,17 +449,17 @@ def get_remedies(remedy_file):
         y = tabs[value][1]
         tabs_list.append([value, x, y])
     
-    # COncatenate the full list from dots and tabs
+    # Concatenate the full list from dots and tabs
     full_list = dots_list + tabs_list
     full_list.sort(key = lambda x:x[1] )
     
-    #split the string along the line breaks? #FIXME - may need another way
+    # split the string along the line breaks? #FIXME - may need another way
     remedy_list = text.strip().split('\n')
     chunky_list = text.strip().split('\n\n')    
     lookup_list = ''.join(remedy_list) #searchable for categories later
     raw_list = ''.join(chunky_list[:2]).split('\n')
     
-    #loop and remove the trailing tab tags, last 3 characters for each
+    # loop and remove the trailing tab tags, last 3 characters for each
     lst_of_lst =[]
     for item in raw_list:        
         if '\t' in item:
@@ -474,7 +478,7 @@ def get_remedies(remedy_file):
     # insert recipes with their categories into a dictionary
     # run through the list of recipes
     
-    #find position of table of content element in the big list/string
+    # find position of table of content element in the big list/string
     ref_list =[]   
     m = len(lookup_list)
     listZ = lookup_list[threshold:m]
@@ -518,10 +522,10 @@ def search_recipes(): #TODO must add code to searh by other criteria
     data = get_recipes(MY_FILE)
     
     # insert this data into a database 
-    #(will replace the data obj in search soon)
+    # will replace the data obj in search soon
     insert_to_db(bon_apetit)
     
-    #Get index for how long the list is
+    # Get index for how long the list is
     max = len(data)
 
     print('\n--------\nYou have a total of ', str(max), ' records')
@@ -531,8 +535,7 @@ def search_recipes(): #TODO must add code to searh by other criteria
     # hall_of_fame
 
     # Quick search function by index
-    index = int(input('\nEnter number less than '+ str(max)+
-                   ' to search recipes by index: '))    
+    index = int(input('\nEnter number less than {0} to search recipes by index: '.format(str(max))))
     print(
           '\n#Great Choice! today you can enjoy:\n\n',
           data[index]['dish name'],
@@ -540,6 +543,7 @@ def search_recipes(): #TODO must add code to searh by other criteria
          '\n\n#Preparation Instructions:\n\n',
           data[index]['dish method']
           )
+
 
 def loopy():
     """ Just a conditional function to loop over the main search"""
@@ -553,11 +557,13 @@ def loopy():
         search_recipes()        
 
 def main():
-    """ This runs the actual logic of the program, calling all the helper functions"""
-    #search_again = input('\nLooking for a recipe:[Y/N]?')
-    #disable for now 
-    #loopy()
-    #search_recipes()
+    """ This runs the actual logic of the program, calling all the helper functions
+    :rtype: object
+    """
+    # search_again = input('\nLooking for a recipe:[Y/N]?')
+    # disable for now
+    # loopy()
+    # search_recipes()
     get_recipes(MY_RECIPES_FILE)
     get_remedies(MY_REMEDIES_FILE)
     insert_to_db(bon_apetit, relief)
