@@ -569,5 +569,11 @@ def main():
     insert_to_db(bon_apetit, relief)
     recipesnremedies.run()
                 
-if __name__ == "__main__":
+def main():
+    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    #database.create_tables([Entry, FTSEntry], safe=True)
+
+if __name__ == '__main__':
     main()
